@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "imagelist",
+    "slug": "imagelist",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
