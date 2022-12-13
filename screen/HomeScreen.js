@@ -75,6 +75,8 @@ export default function HomeScreen() {
     ),
     []
   );
+
+  /* Using Fetch Api */
   // useEffect(() => {
   //   fetch(base_url)
   //     .then((response) => response.json())
@@ -83,6 +85,7 @@ export default function HomeScreen() {
   // }, []);
 
   const apiCall = () => {
+    /* Using Axios  */
     axios
       .get(base_url + "?page=2&limit=" + offset)
       .then((response) => {
@@ -96,6 +99,7 @@ export default function HomeScreen() {
   }, []);
 
   const onRefresh = () => {
+    /* Using Pull to refresh */
     setIsRefreshing(true);
 
     setTimeout(() => {
@@ -117,17 +121,18 @@ export default function HomeScreen() {
   };
 
   const loadMore = () => {
+    /* onreachend load will happen  */
     axios
       .get(base_url + "?page=2&limit=" + offset)
       .then((response) => {
         // setlistData([...listData, ...response.data]);
         //   console.log(response.data)
-        console.log("length", response.data.length);
+        // console.log("length", response.data.length);
         setLoading(true);
-        if (response.data.length > 0 && dataLength <= 20) {
+        if (response.data.length > 0 && dataLength <= 20) {  //due to the api limit was upto 20 https://picsum.photos/v2/list?page=2&limit=20 
           setdataLength(response.data.length);
           setOffset(offset + 1);
-          //After the response increasing the offset for the next API call.
+          //After the response increasing the offset by 1 for the next API call.
 
           setlistData(response.data);
         } else {
